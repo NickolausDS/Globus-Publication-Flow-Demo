@@ -9,7 +9,7 @@ class Gdss(AppConfig):
 
 SEARCH_INDEXES = {
     "gdss": {
-        "uuid": "3e2525cc-e8c1-49cd-bef5-a9566770d74c",
+        "uuid": "",
         "name": "gdss",
         "fields": [
             ("title", fields.title),
