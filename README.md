@@ -1,8 +1,6 @@
-# ACDC Cookie Cutter Portal
+# Publication Demo Portal
 
-An ACDC portal
-
-This is a basic starter portal for deploying science portals to ACDC
+A Django Globus Portal Framework with a simple flow for ingesting new records
 
 ### Development
 
@@ -21,12 +19,11 @@ And run the portal with:
 python manage.py runserver
 ```
 
-ACDC branding is handled by the ACDC project here:
+### Creating a new search index
 
-https://github.com/globusonline/django-alcf-data-portal
+You will need to create a new search index in order to ingest records into it.
+You can do so with the following command:
 
+    globus search index create gdss "A search index for gdss" 
 
-### Portal modifications
-
-In general, any custom views under `urls.py` are fine. All URLs are mounted under
-the index name, and will appear under ``https://acdc.alcf.anl.gov/myindex/``.
+And then adding the UUID to the `app.py` file.

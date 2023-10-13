@@ -1,1 +1,2 @@
-django - globus - portal - framework < 0.5
+django-globus-portal-framework < 0.5
+gladier >= 0.9.1
