@@ -211,35 +211,26 @@ class PublicationTestClient(GladierBaseClient):
                         "type": "object",
                         "additionalProperties": False,
                         "properties": {
-                            "index": {
-                                "type": "string"
-                            },
-                            "subject": {
-                                "type": "string"
-                            },
-                            "pre_publish_visible_to": {
-                                "type": "string"
-                            },
-                            "post_publish_visible_to": {
-                                "type": "string"
-                            },
+                            "index": {"type": "string"},
+                            "subject": {"type": "string"},
+                            "pre_publish_visible_to": {"type": "string"},
+                            "post_publish_visible_to": {"type": "string"},
                             "content": {
                                 "type": "object",
                                 "additionalProperties": True,
                                 "properties": {
                                     "title": {
                                         "type": "string",
-                                        "title": "Search Record Title"
+                                        "title": "Search Record Title",
                                     }
-                                }
-                            }
-
-                        }
+                                },
+                            },
+                        },
                     },
                     "recursive": {
                         "type": "boolean",
                         "title": "Recursive Transfer",
-                    }
+                    },
                 },
             }
         },
