@@ -1,0 +1,1 @@
+django - globus - portal - framework < 0.5

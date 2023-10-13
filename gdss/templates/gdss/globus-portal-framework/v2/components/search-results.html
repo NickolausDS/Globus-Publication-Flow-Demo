@@ -1,0 +1,40 @@
+{% load static %}
+
+{% block headextras %}
+{% endblock %}
+
+<h3 class="h3">Results</h3>
+<div class="alert alert-secondary">
+  <div class="row">
+    <div class="col-md-6 align-self-center">
+      <h6 class="h5">{{search.total}} datasets found</h6>
+      <p class="text-small">
+        Showing {{search.pagination.current_range.low}} - {{search.pagination.current_range.high}}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="search-result" class="search-result">
+  {% for result in search.search_results %}
+  <div class="card my-3">
+    <div class="card-header">
+      <h3 class="search-title">
+        <a href="{% url 'detail' globus_portal_framework.index result.subject %}">{{result.title|default:'Sample'}}</a>
+        </h3>
+        {% if result.publication_status.status == "INCOMPLETE" %} 
+        <div class="alert alert-primary" role="alert">
+            This search result has not yet completed transfer! It will not be visible to the public until the data transfers successfully.
+        </div>
+        {% endif %}
+        <p>
+            Title: {{result.content.title}} </br>
+            Transfer Status: {{result.publication_status.status}}
+        </p>
+        <p>
+            {{result}}
+        </p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
