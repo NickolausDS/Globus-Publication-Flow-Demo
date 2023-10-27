@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import globus_sdk
 from gdss.app import SEARCH_INDEXES
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,6 +29,24 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+FLOW_ID = "cb9bae3e-fc41-4a14-a600-6842a91ed553"
+if not FLOW_ID:
+    raise ValueError(
+        "Please set FLOW_ID in your settings.py. Find your flow id by running flow.py"
+    )
+# This dictates which scopes will be requested on each user login
+FLOW_SCOPE_NAME = f"flow_{FLOW_ID.replace('-', '_')}_user"
+SOCIAL_AUTH_GLOBUS_SCOPE = [
+    "openid",
+    "profile",
+    "email",
+    "urn:globus:auth:scope:search.api.globus.org:all",
+    globus_sdk.SpecificFlowClient(FLOW_ID).scopes.url_scope_string(FLOW_SCOPE_NAME),
+]
+
 
 # Application definition
 
@@ -38,6 +57,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'crispy_forms',
+    'crispy_bootstrap4',
     "gdss",
     "globus_portal_framework",
     "social_django",
