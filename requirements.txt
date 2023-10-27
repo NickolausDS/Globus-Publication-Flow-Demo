@@ -1,3 +1,4 @@
 django-globus-portal-framework < 0.5
 gladier >= 0.9.1
 crispy-bootstrap4 == 2023.01
+fair-research-login >= 0.3.1

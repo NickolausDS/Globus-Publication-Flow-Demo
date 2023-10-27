@@ -32,6 +32,10 @@ ALLOWED_HOSTS = []
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
+# Required identity provider for adding group user access
+# Currently set to University of Chicago
+REQUIRED_IDENTITY_PROVIDER = "0dcf5063-bffd-40f7-b403-24f97e32fa47"
+FLOW_GROUP = "85cacba8-7505-11ee-8903-f7056ea5e4f0"
 FLOW_ID = "cb9bae3e-fc41-4a14-a600-6842a91ed553"
 if not FLOW_ID:
     raise ValueError(
@@ -44,6 +48,7 @@ SOCIAL_AUTH_GLOBUS_SCOPE = [
     "profile",
     "email",
     "urn:globus:auth:scope:search.api.globus.org:all",
+    "urn:globus:auth:scope:groups.api.globus.org:view_my_groups_and_memberships",  # noqa
     globus_sdk.SpecificFlowClient(FLOW_ID).scopes.url_scope_string(FLOW_SCOPE_NAME),
 ]
 
