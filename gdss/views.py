@@ -1,7 +1,7 @@
 import logging
 from django.shortcuts import render, redirect
 
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
 from django import forms
@@ -11,11 +11,12 @@ from globus_portal_framework.gclients import load_globus_access_token
 from globus_portal_framework.gsearch import get_index
 
 from gdss.forms import PublishDataForm
+from gdss.auth import ensure_user_in_group
 
 log = logging.getLogger(__name__)
 
 
-# @login_required
+@login_required
 def publish_data_flow(request, index):
     """
     This view is the heart of this project. It behaves a few different ways.
@@ -26,6 +27,8 @@ def publish_data_flow(request, index):
     as the user with the values they provide. The JSON response is given directly to
     the template, and used to build a link to the webapp to track progress.
     """
+    ensure_user_in_group(request.user)
+
     context = {}
     if request.method == "POST":
         form = PublishDataForm(request.POST)
